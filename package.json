@@ -1,0 +1,14 @@
+{
+  "name": "truenit",
+  "version": "0.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brandonLi8/truenit.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/brandonLi8/truenit/issues"
+  },
+  "homepage": "https://github.com/brandonLi8/truenit#readme"
+}
