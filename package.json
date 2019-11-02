@@ -5,6 +5,8 @@
     "email": "brandon.li820@gmail.com",
     "url": "https://brandonwli.com/"
   },
+  "license": "MIT",
+  "main": "src/truenit.js",
   "version": "0.0.0-dev.0",
   "description": "\"Truenit\" is a lightweight dependency-free Unit Testing framework.",
   "repository": {
