@@ -6,4 +6,4 @@
  * @author Brandon Li <brandon.li820@gmail.com>
  */
 
-module.exports = require( '@brandonli8/grunt-config/Gruntfile.js' );
+module.exports = require( '@brandonli8/grunt-config' );
