@@ -10,5 +10,18 @@
   "bugs": {
     "url": "https://github.com/brandonLi8/truenit/issues"
   },
-  "homepage": "https://github.com/brandonLi8/truenit#readme"
+  "author": {
+    "name": "Brandon Li",
+    "email": "brandon.li820@gmail.com"
+  },
+  "homepage": "https://github.com/brandonLi8/truenit#readme",
+  "devDependencies": {
+    "@brandonli8/grunt-config": "0.0.0-dev.4",
+    "eslint": "^6.6.0",
+    "grunt": "^1.0.4",
+    "md5": "^2.2.1"
+  },
+  "grunt-config": {
+    "relativePath": "./node_modules/@brandonli8/grunt-config"
+  }
 }
