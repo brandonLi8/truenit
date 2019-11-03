@@ -111,8 +111,22 @@
     return `${ ' '.repeat( numberOfSpaces ) }${ string }`;
   }
 
+  //----------------------------------------------------------------------------------------
+  /**
+   * Convenience function that creates a testing sting that is used throughout the project.
+   *
+   * NOTE: This uses assert to verify the validity of arguments. This should only be called somewhere inside of a
+   *       wrapped (see wrap( task )) try-catch hierarchy.
+   *
+   * @param {string} name
+   * @param {boolean} tab - if true, a tab is inserted before the string.
+   */
+  function newTestString( name, tab = false ) {
+    return `${ tab ? '\t': '' }Testing ${ name }...  `;
+  }
+
   //========================================================================================
   // Export the utilities as a object (no instance is needed)
   //========================================================================================
-  module.exports = { assert, print, println, wrap, preSpace };
+  module.exports = { assert, print, println, wrap, preSpace, newTestString };
 } )();
