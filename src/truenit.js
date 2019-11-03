@@ -42,6 +42,40 @@
         log( endMessage ? endMessage : 'Test passed!', endColor );
       } )
     }
+
+    /**
+     * Test method wrapper for the start of a project.
+     *
+     * @param {function} tester
+     */
+    static start( tester ) {
+      truenit.test( tester, 'Testing all...\n\n', 4, '\nAll tests passed!\n\n', 32 );
+    }
+
+    /**
+     * Test method wrapper for a module. Should be wrapped inside of truenit.start().
+     *
+     * @param {string} name - the name of the module
+     * @param {function} tester
+     */
+    static testModule( name, tester ) {
+      wrap( () => {
+        assert( typeof name === 'string', `invalid name: ${name}` );
+      } );
+      truenit.test( tester, `Testing ${name}...  `, 2, `passed.\n`, 0 );
+    }
+
+    /**
+     * Tests that a predicate is truthy.
+     * Should be wrapped inside of a tester.
+     * @public
+     *
+     * @param {boolean} predicate
+     * @param {string} [message]
+     */
+    static ok( predicate, message ) {
+      assert( predicate, message || 'unit test failed.' );
+    }
   }
 
   //========================================================================================
