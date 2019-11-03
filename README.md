@@ -18,10 +18,10 @@
 #
 #===========================================================================-->
 
+# [Truenit](https://github.com/brandonLi8/truenit)
+
 [![Build Status](https://travis-ci.org/brandonLi8/truenit.svg?branch=master)](https://travis-ci.org/brandonLi8/truenit)
 [![npm version](https://badge.fury.io/js/truenit.svg)](https://badge.fury.io/js/truenit)
-
-# [Truenit](https://github.com/brandonLi8/truenit)
 
 <blockquote align="center">
   <em>Truenit</em> (<code>/ˈtruːnɪt/</code>) is a lightweight, easy-to-use, dependency-free Javascript unit testing library with a simple, yet powerful API.<br>
