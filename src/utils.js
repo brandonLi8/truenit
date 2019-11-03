@@ -144,8 +144,8 @@
    * @param {function} tester
    */
   function reverseTester( name, tester ) {
-    assert( typeof name === 'string', `invalid name: ${name}` );
-    assert( typeof tester === 'function', `invalid tester: ${tester}` );
+    assert( typeof name === 'string', `invalid name: ${ name }` );
+    assert( typeof tester === 'function', `invalid tester: ${ tester }` );
 
     return () => {
       try {

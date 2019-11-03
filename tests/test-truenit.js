@@ -1,5 +1,7 @@
 // Copyright © 2019 Brandon Li. All rights reserved.
 
+/* eslint no-console: 0 */
+
 /**
  * Entry point for truenit tests. To run, run `npm test` || `node tests/test-truenit.js`.
  *
@@ -14,7 +16,7 @@
   'use strict';
 
   // modules
-  const truenit = require( '../src/truenit.js' );
+  const truenit = require( '../src/truenit' );
 
 
   //----------------------------------------------------------------------------------------
