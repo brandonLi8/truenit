@@ -69,9 +69,16 @@ truenit.start();
 ## Individual tests
 You can also individually test one at a time:
 ```
+// Tests immediately when called, but doesn't align the output.
 truenit.test( 'Module1', () => {
   truenit.notOk( 6 === 5, 'message if it fails' ); // customize your test!
 } );
+
+// Tests immdeiately that the function errors.
+truenit.throws( 'Module2', () => {
+  truenit.ok( 6 === 5, 'will not be called' );
+} );
+
 ```
 
 ## Get Involved
