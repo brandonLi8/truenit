@@ -49,6 +49,20 @@
      * @param {function} tester
      */
     static start( tester ) {
+
+
+      const prefix = `  Testing ${truenit.modules[0].name}...  `;
+
+      let maxPrefixLength = prefix.length;
+      truenit.modules.forEach( module => {
+        if ( `  Testing ${module.name}...  `.length > maxPrefixLength ) {
+          maxPrefixLength = `  Testing ${module.name}...  `.length;
+        }
+      } );
+      truenit.maxLength = maxPrefixLength;
+
+
+
       truenit.test( () => {
         truenit.modules.forEach( module => {
           truenit.testModule( module.name, module.tester );
@@ -70,22 +84,11 @@
       wrap( () => {
         assert( typeof name === 'string', `invalid name: ${name}` );
       } );
-
-      const prefix = `Testing ${name}...`;
-
-      let maxPrefixLength = prefix.length;
-      truenit.modules.forEach( module => {
-        if ( `Testing ${module.name}...  `.length > maxPrefixLength ) {
-          maxPrefixLength = `Testing ${module.name}...  `.length;
-        }
-      } );
-
-      const longestLength = maxPrefixLength + 'passed'.length;
-      const numberOfSpaces = longestLength - prefix.length;
-      const passedString = new Array( numberOfSpaces ).join( ' ' ) + 'passed\n';
+      const prefix = `  Testing ${name}...  `;
+      const numberOfSpaces = truenit.maxLength - prefix.length;
+      const passedString = ' '.repeat( numberOfSpaces  ) + 'passed\n';
 
       truenit.latestModulePrefix = prefix;
-      truenit.maxLength = longestLength;
 
       truenit.test( tester, prefix, 2, passedString, 0 );
     }
@@ -110,6 +113,13 @@
   //========================================================================================
   // Helper functions
   //========================================================================================
+  /**
+   * Creates a
+   */
+
+  function createPreSpacedString( numberOfSpaces, string ) {
+
+  }
 
   /**
    * Wraps a task such that any errors (which stops task) will be thrown via a log call.
@@ -121,7 +131,7 @@
     try { task(); }
     catch( error ) {
 
-      const passedString = new Array( truenit.maxLength - truenit.latestModulePrefix.length ).join( ' ' );
+      const passedString = new Array( truenit.maxLength - truenit.latestModulePrefix.length + 1 ).join( ' ' );
 
       // Catch any errors while executing task and reformat the error message.
       log( `${passedString}${error}`, 31 );
