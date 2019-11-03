@@ -81,6 +81,4 @@ Contact me via <a href="mailto:brandon.li820@gmail.com" target="_blank"> email</
 Help improve the app by creating a <a href="https://github.com/brandonLi8/truenit/issues" target="_blank">New Issue</a>.
 
 
-<sub>© 2019 [Brandon Li](https://brandonwli.com)</sub>
-
-<sub>See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a></sub>
+<sub>© 2019 [Brandon Li](https://brandonwli.com)</sub> | <sub>See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a></sub>
