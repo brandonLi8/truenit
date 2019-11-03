@@ -96,8 +96,8 @@
           },
 
           // Print before and after testing
-          before: () => { utils.println( 'Testing all...\n', 4 ) },
-          after: () => { utils.println( '\nAll tests passed!\n\n', 32 ) }
+          before: () => { utils.print( `\x1b[1m\x1b[4mTesting all...\n`, 0 ); },
+          after: () => { utils.println( '\n\x1b[1mAll tests passed!\n\n', 32 ); }
         } );
       }
     }
@@ -160,21 +160,20 @@
       } );
     }
 
-  //   /**
-  //    * Tests that a predicate is truthy.
-  //    * Should be wrapped inside of a tester.
-  //    * @public
-  //    *
-  //    * @param {boolean} predicate
-  //    * @param {string} [message]
-  //    */
-  //   static ok( predicate, message ) {
-  //     assert( predicate, message || 'unit test failed.' );
-  //   }
-  // }
-
-      //----------------------------------------------------------------------------------------
-      // Make sure the alignment is correct by getting the maxTestString of each module.
+    /**
+     * A generic unit tester function.
+     *
+     * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
+     *       of a tester.
+     *
+     * @public
+     *
+     * @param {boolean} predicate
+     * @param {string} [message]
+     */
+    static ok( predicate, message ) {
+      assert( predicate, message || 'unit test failed.' );
+    }
   }
 
   module.exports = truenit;

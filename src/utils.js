@@ -41,7 +41,7 @@
    *   ## Normal Codes   | ## Fg Codes       |  ## Bg Codes
    *     0 - Reset       |   30 - FgBlack    |   40 - BgBlack
    *     1 - Bright      |   31 - FgRed      |   41 - BgRed
-   *     2 - Di          |   32 - FgGreen    |   42 - BgGreen
+   *     2 - Dim         |   32 - FgGreen    |   42 - BgGreen
    *     3 - Underscore  |   33 - FgYellow   |   43 - BgYellow
    *     4 - Blink       |   34 - FgBlue     |   44 - BgBlue
    *     5 - Reverse     |   35 - FgMagenta  |   45 - BgMagenta
