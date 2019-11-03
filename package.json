@@ -13,6 +13,9 @@
     "type": "git",
     "url": "https://github.com/brandonLi8/truenit.git"
   },
+  "scripts": {
+    "test": "node tests/test-truenit.js"
+  },
   "devDependencies": {
     "@brandonli8/grunt-config": "0.0.0-dev.7"
   },
