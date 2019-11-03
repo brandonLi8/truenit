@@ -73,8 +73,23 @@ truenit.start();
 ```
 
 (4) Enjoy the output.
+```bash
+$ npm test
 
-![Screen Shot 2019-11-03 at 2 31 04 PM](https://user-images.githubusercontent.com/42391580/68092443-66f5dc80-fe48-11e9-8d23-3a426c5eca5a.png)
+Testing all...
+
+   Testing Module1...     Pass
+   Testing Module2...     Pass
+   Testing Node...        Pass
+   Testing ScreenView...  Pass
+   Testing Property...    Pass
+   Testing OtherClass...  Pass
+   Testing S...           Pass
+   
+ All tests passed!
+ 
+$ _
+```
 
 ## Individual tests
 You can also individually test one at a time:
