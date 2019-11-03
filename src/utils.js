@@ -95,6 +95,36 @@
 
   //----------------------------------------------------------------------------------------
   /**
+   * Convenience function that wraps a test, but allows for custom behavior before and after the task.
+   * Also allows for custom behavior if a failure occurs.
+   *
+   * @param {object} config {
+   *    tester: {function} - task that tests the test
+   *    [before]: {function} - called before the tester
+   *    [after]: {function} - called after the tester
+   *    [failure]: {number} - number of spaces prepended before the fail stack.
+   * }
+   */
+  function test( config ) {
+    wrap( () => {
+
+      assert( !config || Object.getPrototypeOf( config ) === Object.prototype, `Extra prototype on config: ${config}` );
+      assert( typeof config.tester === 'function', `invalid config.tester: ${config.tester}` );
+      assert( !config.before || typeof config.before === 'function', `invalid config.before: ${config.before}` );
+      assert( !config.after || typeof config.after === 'function', `invalid config.after: ${config.after}` );
+      assert( !config.failure || typeof config.failure === 'number', `invalid config.failure: ${config.failure}` );
+
+      config.before && config.before();
+
+      try { config.tester(); }
+      catch( error ) { assert( false, preSpace( `FAILED \n\n${error.stack}\n\n`, config.failure || 0 ) ); }
+
+      config.after && config.after();
+    } );
+  }
+
+  //----------------------------------------------------------------------------------------
+  /**
    * Adds a variable amount of spaces before a string. This is a convenience helper function.
    *
    * NOTE: This uses assert to verify the validity of arguments. This should only be called somewhere inside of a

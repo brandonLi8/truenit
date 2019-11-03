@@ -80,65 +80,27 @@
     }
 
     /**
-     * Executes the tester of each test in registeredTests. If there aren't any tests, nothing happens.
+     * Tests each tests in registeredTests If there aren't any tests, nothing happens.
      *
      * @return {truenit} for chaining
      */
     static start() {
 
-      //----------------------------------------------------------------------------------------
-      // Make sure the alignment is correct by getting the maxTestString of each module.
-      let maxTestString = 0;
+      if ( registeredTests.length > 0 ) {
 
-      truenit.modules.forEach( module => {
-        if ( util.newTestString( module.name ) > maxTestString ) {
-          maxTestString = util.newTestString( module.name ).length;
-        }
-      } );
+        util.test( {
 
+          // Test each test in registeredTests
+          tester: () => {
+            registeredTests.forEach( truenit.testModule );
+          },
 
-      truenit.test( () => {
-        truenit.modules.forEach( module => {
-          truenit.testModule( module.name, module.tester );
-        } )
-      }, 'Testing all...\n\n', 4, '\nAll tests passed!\n\n', 32 );
+          // Print before and after testing
+          before: () => { util.println( 'Testing all...\n\n', 4 ) },
+          after: () => { util.println( 'All tests passed!\n\n', 32 ) }
+        } );
+      }
     }
-
-  //   /**
-  //    * Executes a tester function but wraps it with helpful messages
-  //    */
-  //   /**
-  //    * Basic method that attempts to execute a tester. Used as a high-level wrapper to start a large
-  //    * section of tests.
-  //    * @public
-  //    *
-  //    * @param {function} tester
-  //    * @param {string} [startMessage]
-  //    * @param {number} [startColor]
-  //    * @param {string} [endMessage]
-  //    * @param {number} [endColor]
-  //    * @param {string} [failedMessage]
-  //    */
-  //   static test( tester, startMessage, startColor, endMessage, endColor, failedMessage ) {
-  //     wrap( () => {
-  //       assert( typeof tester === 'function', `invalid tester: ${tester}` );
-  //       assert( !startMessage || typeof startMessage === 'string', `invalid startMessage: ${startMessage}` );
-  //       assert( !endMessage || typeof endMessage === 'string', `invalid endMessage: ${endMessage}` );
-  //       assert( !failedMessage || typeof failedMessage === 'string', `invalid failedMessage: ${failedMessage}` );
-
-  //       //----------------------------------------------------------------------------------------
-  //       // Start testing
-  //       logMessage( startMessage ? startMessage : 'starting test...\n', startColor );
-
-  //       try {
-  //         tester();
-  //       }
-  //       catch( error ) {
-  //         assert( false, failedMessage ? failedMessage : `FAILED \n\n${error.stack}\n\n` );
-  //       }
-  //       logMessage( endMessage ? endMessage : 'Test passed!', endColor );
-  //     } )
-  //   }
 
 
 
@@ -174,6 +136,15 @@
   //   }
   // }
 
+      //----------------------------------------------------------------------------------------
+      // Make sure the alignment is correct by getting the maxTestString of each module.
+      let maxTestString = 0;
+
+      registeredTests.forEach( module => {
+        if ( util.newTestString( module.name ) > maxTestString ) {
+          maxTestString = util.newTestString( module.name ).length;
+        }
+      } );
 
   // module.exports = truenit;
 } )();
