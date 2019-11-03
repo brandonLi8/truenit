@@ -72,7 +72,7 @@
    * @param {boolean} [useTemplate] - see print() (above)
    */
   function println( message, color, useTemplate ) {
-    print( `${ message }\n`, color, useTemplate );
+    print( `\n${ message }`, color, useTemplate );
   }
 
   //----------------------------------------------------------------------------------------
@@ -117,7 +117,10 @@
       config.before && config.before();
 
       try { config.tester(); }
-      catch( error ) { assert( false, preSpace( `FAILED \n\n${error.stack}\n\n`, config.failure || 0 ) ); }
+      catch( error ) {
+        print( preSpace( '', config.failure || 0 ) );
+        assert( false, `FAILED \n\n${error.stack}\n\n` );
+      }
 
       config.after && config.after();
     } );
@@ -152,11 +155,11 @@
    * @param {boolean} tab - if true, a tab is inserted before the string.
    */
   function newTestString( name, tab = false ) {
-    return `${ tab ? '\t': '' }Testing ${ name }...  `;
+    return `${ tab ? '   ': '' }Testing ${ name }...  `;
   }
 
   //========================================================================================
   // Export the utilities as a object (no instance is needed)
   //========================================================================================
-  module.exports = { assert, print, println, wrap, preSpace, newTestString };
+  module.exports = { assert, print, println, wrap, test, preSpace, newTestString };
 } )();
