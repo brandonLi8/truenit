@@ -25,10 +25,14 @@
 [![npm version](https://badge.fury.io/js/truenit.svg)](https://badge.fury.io/js/truenit)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit?ref=badge_shield)
 
+<br>
+
 <!-- Description -->
 <blockquote align="left">
   <em>Truenit</em> (<code>/ˈtruːnɪt/</code>) is a lightweight, easy-to-use, dependency-free Javascript unit testing library with a simple, yet powerful API.<br>
 </blockquote>
+
+<br>
 
 <!-- Purposes -->
 ## When should I use Truenit?
@@ -44,11 +48,11 @@ $ npm install truenit --save-dev
 ```
 
 ## Usage
-#### (1) Import the library in your test file:
+#### 1. Import the library in your test file:
 ```javascript
 const truenit = require( 'truenit' );
 ```
-#### (2) Register tests with functions that test your test.
+#### 2. Register tests with functions that test your test.
 ```javascript
 // Registers a test to be tested later so that the output is aligned.
 truenit.registerTest( 'Module1', () => {
@@ -68,12 +72,12 @@ truenit.registerThrowTest( 'Module2', () => {
   
 } );
 ```
-#### (3) Run the tests and the file.
+#### 3. Run the tests and the file.
 ```
 truenit.start();
 ```
 
-#### (4) Enjoy the output.
+#### 4. Enjoy the output.
 ```bash
 $ npm test
 
