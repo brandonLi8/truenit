@@ -85,13 +85,15 @@
    * @param {function} task - task to be wrapped and executed
    */
   function wrap( task ) {
-    try { task(); }
+    try {
+      task();
+    }
     catch( error ) {
       // Catch any errors while executing task and reformat the error message.
-      print( `${error}`, 31 );
+      print( `${ error }`, 31 );
       process.exit( 1 );
     }
-  };
+  }
 
   //----------------------------------------------------------------------------------------
   /**
@@ -108,18 +110,20 @@
   function test( config ) {
     wrap( () => {
 
-      assert( !config || Object.getPrototypeOf( config ) === Object.prototype, `Extra prototype on config: ${config}` );
-      assert( typeof config.tester === 'function', `invalid config.tester: ${config.tester}` );
-      assert( !config.before || typeof config.before === 'function', `invalid config.before: ${config.before}` );
-      assert( !config.after || typeof config.after === 'function', `invalid config.after: ${config.after}` );
-      assert( !config.failure || typeof config.failure === 'number', `invalid config.failure: ${config.failure}` );
+      assert( !config || Object.getPrototypeOf( config ) === Object.prototype, `invalivd config: ${ config }` );
+      assert( typeof config.tester === 'function', `invalid config.tester: ${ config.tester }` );
+      assert( !config.before || typeof config.before === 'function', `invalid config.before: ${ config.before }` );
+      assert( !config.after || typeof config.after === 'function', `invalid config.after: ${ config.after }` );
+      assert( !config.failure || typeof config.failure === 'number', `invalid config.failure: ${ config.failure }` );
 
       config.before && config.before();
 
-      try { config.tester(); }
+      try {
+        config.tester();
+      }
       catch( error ) {
         print( preSpace( '', config.failure || 0 ) );
-        assert( false, `FAILED \n\n${error.stack}\n\n` );
+        assert( false, `FAILED \n\n${ error.stack }\n\n` );
       }
 
       config.after && config.after();
@@ -138,8 +142,8 @@
    */
   function preSpace( string, numberOfSpaces ) {
 
-    assert( typeof string === 'string', `invalid string: ${string}` );
-    assert( typeof numberOfSpaces === 'number' && numberOfSpaces >= 0, `invalid numberOfSpaces: ${numberOfSpaces}` );
+    assert( typeof string === 'string', `invalid string: ${ string }` );
+    assert( typeof numberOfSpaces === 'number' && numberOfSpaces >= 0, `invalid numberOfSpaces: ${ numberOfSpaces }` );
 
     return `${ ' '.repeat( numberOfSpaces ) }${ string }`;
   }

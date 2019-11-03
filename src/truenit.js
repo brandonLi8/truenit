@@ -19,7 +19,7 @@
   const utils = require( './utils' );
 
   // globals
-  let registeredTests = []; // array of the tests that have been registered and ready to test.
+  const registeredTests = []; // array of the tests that have been registered and ready to test.
 
   //----------------------------------------------------------------------------------------
 
@@ -31,7 +31,7 @@
      *
      * @param {string} name - the name of the test. This is what is part of the output.
      * @param {function} tester - the function that executes the test. Called when `truenit.start()` is called.
-     * @param {truenit} for chaining
+     * @returns {truenit} for chaining
      */
     static registerTest( name, tester ) {
       // Wrap the registering of the task so that errors are correctly formatted.
@@ -56,7 +56,7 @@
      *
      * @param {string} name - the name of the test.
      * @param {function} tester - the function that executes the test.
-     * @param {truenit} for chaining
+     * @returns {truenit} for chaining
      */
     static removeTest( name, tester ) {
       // Wrap the registering of the task so that errors are correctly formatted.
@@ -73,7 +73,7 @@
             registeredTests.splice( i, 1 );
             return;
           }
-        };
+        }
         utils.assert( false, 'test was not found' );
       } );
       return truenit;
@@ -82,7 +82,7 @@
     /**
      * Tests each tests in registeredTests If there aren't any tests, nothing happens.
      *
-     * @return {truenit} for chaining
+     * @returns {truenit} for chaining
      */
     static start() {
 
@@ -91,13 +91,11 @@
         utils.test( {
 
           // Test each test in registeredTests
-          tester: () => {
-            registeredTests.forEach( ( test ) => { truenit.test( test.name, test.tester ) } );
-          },
+          tester: () => ( registeredTests.forEach( test => ( truenit.test( test.name, test.tester ) ) ) ),
 
           // Print before and after testing
-          before: () => { utils.print( `\x1b[1m\x1b[4mTesting all...\n`, 0 ); },
-          after: () => { utils.println( '\n\x1b[1mAll tests passed!\n\n', 32 ); }
+          before: () => ( utils.print( '\x1b[1m\x1b[4mTesting all...\n', 0 ) ),
+          after: () => ( utils.println( '\n\x1b[1mAll tests passed!\n\n', 32 ) )
         } );
       }
     }
@@ -108,7 +106,7 @@
      *
      * @param {string} name - the name of the test
      * @param {function} tester
-     * @return {truenit} for chaining
+     * @returns {truenit} for chaining
      */
     static test( name, tester ) {
 
@@ -134,7 +132,7 @@
         if ( testIsRegistered ) {
           registeredTests.forEach( test => {
 
-            let testString = utils.newTestString( test.name, true );
+            const testString = utils.newTestString( test.name, true );
 
             if ( testString.length > longestTestString ) longestTestString = testString.length;
           } );
@@ -150,8 +148,8 @@
         utils.test( {
           tester,
           // Print before and after testing
-          before: () => { utils.println( testString, testIsRegistered ? 2 : 0 ) },
-          after: () => { utils.print( utils.preSpace( 'Passed.', spacesPrepended ) ) },
+          before: () => ( utils.println( testString, testIsRegistered ? 2 : 0 ) ),
+          after: () => ( utils.print( utils.preSpace( 'Passed.', spacesPrepended ) ) ),
           failure: spacesPrepended
         } );
 
@@ -172,7 +170,7 @@
      * @param {string} [message]
      */
     static ok( predicate, message ) {
-      assert( predicate, message || 'unit test failed.' );
+      utils.assert( predicate, message || 'unit test failed.' );
     }
   }
 
