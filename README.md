@@ -32,8 +32,7 @@
 
 * You want to execute your tests locally during development.
 * You want to execute your tests on every save on a continuous integration server.
-* You love your CLI.
-* You love a pretty output.
+* You love your CLI and a pretty output
 * You want to use [RequireJS](https://requirejs.org/) or [Node](https://nodejs.org/en/) or anything for your source files.
 
 ## Getting started
