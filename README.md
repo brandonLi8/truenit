@@ -50,16 +50,20 @@ const truenit = require( 'truenit' );
 ```javascript
 // Registers a test to be tested later so that the output is aligned.
 truenit.registerTest( 'Module1', () => {
+
   // Do whatever tests here with Module1.
   // Example:
   truenit.notOk( 6 === 5, 'message if it fails' );
+  
 } );
 
 // Registers a test that should throw an error.
 truenit.registerThrowTest( 'Module2', () => {
+
   // Do whatever tests here with Module2 that throws an error.
   // Example:
   truenit.ok( 6 === 5, 'message if it fails' );
+  
 } );
 ```
 (3) Run the tests and the file.
@@ -69,23 +73,27 @@ truenit.start();
 
 (4) Enjoy the output.
 
-
+![Screen Shot 2019-11-03 at 2 31 04 PM](https://user-images.githubusercontent.com/42391580/68092443-66f5dc80-fe48-11e9-8d23-3a426c5eca5a.png)
 
 ## Individual tests
 You can also individually test one at a time:
 ```javascript
 // Tests immediately when called, but doesn't align the result with other tests.
 truenit.test( 'Module1', () => {
+
   // Do whatever tests here with Module1.
   // Example:
   truenit.notOk( 6 === 5, 'message if it fails' );
+  
 } );
 
 // Tests immediately that the function errors.
 truenit.throws( 'Module2', () => {
+
   // Do whatever tests here that should error with Module2.
   // Example:
   truenit.ok( 6 === 5, 'will not be called' );
+  
 } );
 
 ```
