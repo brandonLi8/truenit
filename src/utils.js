@@ -5,7 +5,7 @@
  *
  * This module should be loaded as a object with utility classes (no instance is necessary).
  *
- * @author Brandon Li <brandon.li820@gmail.com> a a temporary test
+ * @author Brandon Li <brandon.li820@gmail.com>
  */
 
 ( () => {
@@ -132,6 +132,35 @@
 
   //----------------------------------------------------------------------------------------
   /**
+   * Reverses a tester such that it expects to throw an error. If no error is thrown while executing tester, the
+   * reverseTest will throw an error and vise versa.
+   *
+   * NOTE: This uses assert to verify the validity of arguments. This should only be called somewhere inside of a
+   *       wrapped (see wrap( task )) try-catch hierarchy.
+   *
+   * @public
+   *
+   * @param {string} name - the name of the test
+   * @param {function} tester
+   */
+  function reverseTester( name, tester ) {
+    assert( typeof name === 'string', `invalid name: ${name}` );
+    assert( typeof tester === 'function', `invalid tester: ${tester}` );
+
+    return () => {
+      try {
+        tester();
+      }
+      catch( error ) {
+        return; // do nothing and exit
+      }
+      // No error happened, which is wrong
+      throw new Error( `${ name } test did not throw.` );
+    };
+  }
+
+  //----------------------------------------------------------------------------------------
+  /**
    * Adds a variable amount of spaces before a string. This is a convenience helper function.
    *
    * NOTE: This uses assert to verify the validity of arguments. This should only be called somewhere inside of a
@@ -165,5 +194,5 @@
   //========================================================================================
   // Export the utilities as a object (no instance is needed)
   //========================================================================================
-  module.exports = { assert, print, println, wrap, test, preSpace, newTestString };
+  module.exports = { assert, print, println, wrap, test, reverseTester, preSpace, newTestString };
 } )();
