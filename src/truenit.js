@@ -8,6 +8,7 @@
  * ## Future Maintainers:
  *  - see `https://github.com/brandonLi8/truenit/blob/master/README.md` for an overview of the project
  *  - see `https://github.com/brandonLi8/truenit/blob/master/docs/implementation-notes.md` before updating.
+ *  - see `https://github.com/brandonLi8/truenit/blob/master/tests/test-truenit.js` for tests and an example of the api.
  *
  * @author Brandon Li <brandon.li820@gmail.com>
  */
@@ -48,6 +49,32 @@
         registeredTests.push( test );
 
       } );
+      return truenit;
+    }
+
+    /**
+     * Registers a test to the registeredTests array such that it expects a error to be thrown. Errors if no error
+     * is thrown.
+     *
+     * @param {string} name - the name of the test. This is what is part of the output.
+     * @param {function} tester - the function that executes the test. Called when `truenit.start()` is called.
+     */
+    static registerThrowTest( name, tester ) {
+      utils.wrap( () => {
+        this.registerTest( name, utils.reverseTester( name, tester ) );
+      } );
+    }
+
+    /**
+     * Clears all registered tests and does nothing if there aren't any registered tests.
+     * @public
+     * @returns {truenit} for chaining
+     */
+    static clearTests() {
+
+      while( registeredTests.length ) {
+        registeredTests.pop();
+      }
       return truenit;
     }
 
@@ -171,6 +198,34 @@
      */
     static ok( predicate, message ) {
       utils.assert( predicate, message || 'unit test failed.' );
+    }
+
+    /**
+     * A generic unit tester function that tests a predicate is falsy.
+     *
+     * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
+     *       of a tester.
+     *
+     * @public
+     *
+     * @param {boolean} predicate
+     * @param {string} [message]
+     */
+    static notOk( predicate, message ) {
+      utils.assert( !predicate, message || 'unit test failed.' );
+    }
+
+    /**
+     * Wraps a tester inside of try-catch hierarchy such that it expects to throw an error and tests that it does.
+     * @public
+     *
+     * @param {string} name - the name of the test
+     * @param {function} tester
+     */
+    static throws( name, tester ) {
+      utils.wrap( () => {
+        truenit.test( name, utils.reverseTester( name, tester ) );
+      } );
     }
   }
 
