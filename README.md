@@ -82,4 +82,5 @@ Help improve the app by creating a <a href="https://github.com/brandonLi8/trueni
 
 See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a>
 
-© 2019 [Brandon Li](https://brandonwli.com)
+
+<sub><sup>© 2019 [Brandon Li](https://brandonwli.com)</sup></sub>
