@@ -5,7 +5,7 @@
  *
  * This module should be loaded as a object with utility classes (no instance is necessary).
  *
- * @author Brandon Li <brandon.li820@gmail.com>
+ * @author Brandon Li <brandon.li820@gmail.com> a a temporary test
  */
 
 ( () => {
