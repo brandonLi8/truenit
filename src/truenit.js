@@ -49,7 +49,15 @@
      * @param {function} tester
      */
     static start( tester ) {
-      truenit.test( tester, 'Testing all...\n\n', 4, '\nAll tests passed!\n\n', 32 );
+      truenit.test( () => {
+        truenit.modules.forEach( module => {
+          truenit.testModule( module.name, module.tester );
+        } )
+      }, 'Testing all...\n\n', 4, '\nAll tests passed!\n\n', 32 );
+    }
+
+    static registerModule( name, tester ) {
+      truenit.modules.push( { name, tester } );
     }
 
     /**
@@ -62,7 +70,24 @@
       wrap( () => {
         assert( typeof name === 'string', `invalid name: ${name}` );
       } );
-      truenit.test( tester, `Testing ${name}...  `, 2, `passed.\n`, 0 );
+
+      const prefix = `Testing ${name}...`;
+
+      let maxPrefixLength = prefix.length;
+      truenit.modules.forEach( module => {
+        if ( `Testing ${module.name}...  `.length > maxPrefixLength ) {
+          maxPrefixLength = `Testing ${module.name}...  `.length;
+        }
+      } );
+
+      const longestLength = maxPrefixLength + 'passed'.length;
+      const numberOfSpaces = longestLength - prefix.length;
+      const passedString = new Array( numberOfSpaces ).join( ' ' ) + 'passed\n';
+
+      truenit.latestModulePrefix = prefix;
+      truenit.maxLength = longestLength;
+
+      truenit.test( tester, prefix, 2, passedString, 0 );
     }
 
     /**
@@ -78,6 +103,10 @@
     }
   }
 
+  truenit.modules = [];
+  truenit.maxLength = 0;
+  truenit.latestModulePrefix = 0;
+
   //========================================================================================
   // Helper functions
   //========================================================================================
@@ -91,8 +120,11 @@
   function wrap( task ) {
     try { task(); }
     catch( error ) {
+
+      const passedString = new Array( truenit.maxLength - truenit.latestModulePrefix.length ).join( ' ' );
+
       // Catch any errors while executing task and reformat the error message.
-      log( `${error}`, 31 );
+      log( `${passedString}${error}`, 31 );
       process.exit( 1 );
     }
   };
