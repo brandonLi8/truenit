@@ -25,14 +25,10 @@
 [![npm version](https://badge.fury.io/js/truenit.svg)](https://badge.fury.io/js/truenit)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit?ref=badge_shield)
 
-<br>
-
 <!-- Description -->
 <blockquote align="left">
-  <em>Truenit</em> (<code>/ˈtruːnɪt/</code>) is a lightweight, easy-to-use, dependency-free Javascript unit testing library with a simple, yet powerful API.<br>
+  <em>Truenit</em> (<code>/ˈtruːnɪt/</code>) is a lightweight, easy-to-use, dependency-free Javascript unit testing library with a simple, yet powerful API.
 </blockquote>
-
-<br>
 
 <!-- Purposes -->
 ## When should I use Truenit?
