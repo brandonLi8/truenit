@@ -20,40 +20,92 @@
 #
 #===========================================================================-->
 
-# truenit
+# [Truenit](https://github.com/brandonLi8/truenit)
 
-"Truenit" is a lightweight dependency-free Unit Testing framework.
+[![Build Status](https://travis-ci.org/brandonLi8/truenit.svg?branch=master)](https://travis-ci.org/brandonLi8/truenit)
+[![npm version](https://badge.fury.io/js/truenit.svg)](https://badge.fury.io/js/truenit)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit?ref=badge_large)
 
-### Try it!
-<a href="https://github.com/brandonLi8/truenit/blob/master/README.md" target="_blank">Visit the app.</a>
+<blockquote align="left">
+  <em>Truenit</em> (<code>/ˈtruːnɪt/</code>) is a lightweight, easy-to-use, dependency-free Javascript unit testing library with a simple, yet powerful API.<br>
+</blockquote>
 
-<!-- Uncomment to add a screen shot:  -->
-<!-- <img src="" alt="Screenshot" style="width: 400px;"/></a> -->
 
-### Quick Start
-(1) Clone the repository in a desired spot
+## When should I use Truenit?
+
+* You want to execute your tests locally during development.
+* You want to execute your tests on every save on a continuous integration server.
+* You love your CLI and a pretty output
+* You want to use [RequireJS](https://requirejs.org/) or [Node](https://nodejs.org/en/) or anything for your source files.
+
+## Getting started
+(1) `truenit` is available on [npm](https://www.npmjs.com/package/truenit). To install it and its dependencies, type:
+```bash
+$ npm install truenit --save-dev
 ```
-https://github.com/brandonLi8/truenit.git
+
+### Usage
+(1) Import the library in your test file:
+```javascript
+const truenit = require( 'truenit' );
 ```
-(2) Start an http-server
+(2) Register tests with functions that test your test.
+```javascript
+// Registers a test to be tested later so that the output is aligned.
+truenit.registerTest( 'Module1', () => {
+
+  // Do whatever tests here with Module1.
+  // Example:
+  truenit.notOk( 6 === 5, 'message if it fails' );
+  
+} );
+
+// Registers a test that should throw an error.
+truenit.registerThrowTest( 'Module2', () => {
+
+  // Do whatever tests here with Module2 that throws an error.
+  // Example:
+  truenit.ok( 6 === 5, 'message if it fails' );
+  
+} );
 ```
-http-server
+(3) Run the tests and the file.
+```
+truenit.start();
 ```
 
-(3) Open `http://localhost:path` (You will need to modify this URL based on your HTTP port and relative path.)
+(4) Enjoy the output.
 
-### Get Involved
+![Screen Shot 2019-11-03 at 2 31 04 PM](https://user-images.githubusercontent.com/42391580/68092443-66f5dc80-fe48-11e9-8d23-3a426c5eca5a.png)
+
+## Individual tests
+You can also individually test one at a time:
+```javascript
+// Tests immediately when called, but doesn't align the result with other tests.
+truenit.test( 'Module1', () => {
+
+  // Do whatever tests here with Module1.
+  // Example:
+  truenit.notOk( 6 === 5, 'message if it fails' );
+  
+} );
+
+// Tests immediately that the function errors.
+truenit.throws( 'Module2', () => {
+
+  // Do whatever tests here that should error with Module2.
+  // Example:
+  truenit.ok( 6 === 5, 'will not be called' );
+  
+} );
+
+```
+
+## Get Involved
 
 Contact me via <a href="mailto:brandon.li820@gmail.com" target="_blank"> email</a>.
 
-Help improve the app by creating a <a href="https://github.com/brandonLi8/truenit/issues" target="_blank">New Issue</a>.
+Help improve by creating a <a href="https://github.com/brandonLi8/truenit/issues" target="_blank">New Issue</a>.
 
-<!-- NOTE: this can change to whatever you want.. create a fork to customizable the code style -->
-Use this [code style guideline](https://github.com/brandonLi8/grunt-config/templates/code-style.md) for this project.
 
-## License
-See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a>
-
-© 2019 Brandon Li
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit?ref=badge_large)
+<sub>© 2019 [Brandon Li](https://brandonwli.com)</sub> | <sub>See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a></sub>
