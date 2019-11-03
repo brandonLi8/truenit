@@ -18,36 +18,37 @@
 #
 #===========================================================================-->
 
-# [Truenit](https://github.com/brandonLi8/truenit)
+# [Truenit](https://www.npmjs.com/package/truenit)
 
+<!-- Badges -->
 [![Build Status](https://travis-ci.org/brandonLi8/truenit.svg?branch=master)](https://travis-ci.org/brandonLi8/truenit)
 [![npm version](https://badge.fury.io/js/truenit.svg)](https://badge.fury.io/js/truenit)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit?ref=badge_shield)
 
+<!-- Description -->
 <blockquote align="left">
   <em>Truenit</em> (<code>/ˈtruːnɪt/</code>) is a lightweight, easy-to-use, dependency-free Javascript unit testing library with a simple, yet powerful API.<br>
 </blockquote>
 
-
+<!-- Purposes -->
 ## When should I use Truenit?
 
-* You want to execute your tests locally during development.
+* You want to execute your tests locally during development with a CLI (command line interface).
 * You want to execute your tests on every save on a continuous integration server.
-* You love your CLI and a pretty output
-* You want to use [RequireJS](https://requirejs.org/) or [Node](https://nodejs.org/en/) or anything for your source files.
+* You want to use [RequireJS](https://requirejs.org/) or [Node](https://nodejs.org/en/) or anything else for your source files.
 
-## Getting started
-(1) `truenit` is available on [npm](https://www.npmjs.com/package/truenit). To install it and its dependencies, type:
+## Installation
+**`truenit`** is available on [npm](https://www.npmjs.com/package/truenit). To install it and its dependencies, run:
 ```bash
 $ npm install truenit --save-dev
 ```
 
-### Usage
-(1) Import the library in your test file:
+## Usage
+#### (1) Import the library in your test file:
 ```javascript
 const truenit = require( 'truenit' );
 ```
-(2) Register tests with functions that test your test.
+#### (2) Register tests with functions that test your test.
 ```javascript
 // Registers a test to be tested later so that the output is aligned.
 truenit.registerTest( 'Module1', () => {
@@ -67,12 +68,12 @@ truenit.registerThrowTest( 'Module2', () => {
   
 } );
 ```
-(3) Run the tests and the file.
+#### (3) Run the tests and the file.
 ```
 truenit.start();
 ```
 
-(4) Enjoy the output.
+#### (4) Enjoy the output.
 ```bash
 $ npm test
 
@@ -113,7 +114,6 @@ truenit.throws( 'Module2', () => {
 } );
 
 ```
-
 ## Get Involved
 
 Contact me via <a href="mailto:brandon.li820@gmail.com" target="_blank"> email</a>.
@@ -121,4 +121,4 @@ Contact me via <a href="mailto:brandon.li820@gmail.com" target="_blank"> email</
 Help improve by creating a <a href="https://github.com/brandonLi8/truenit/issues" target="_blank">New Issue</a>.
 
 
-<sub>© 2019 [Brandon Li](https://brandonwli.com)</sub> | <sub>See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a></sub>
+<sub>Copyright © 2019 [Brandon Li](https://brandonwli.com). All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;&nbsp;&nbsp;See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a></sub>
