@@ -37,8 +37,8 @@
       // Wrap the registering of the task so that errors are correctly formatted.
       utils.wrap( () => {
 
-        util.assert( typeof name === 'string', `invalid name: ${ name }` );
-        util.assert( typeof tester === 'function', `invalid tester: ${ tester }` );
+        utils.assert( typeof name === 'string', `invalid name: ${ name }` );
+        utils.assert( typeof tester === 'function', `invalid tester: ${ tester }` );
 
         // Create an object that keeps track of the testing attributes
         const test = {
@@ -62,8 +62,8 @@
       // Wrap the registering of the task so that errors are correctly formatted.
       utils.wrap( () => {
 
-        util.assert( typeof name === 'string', `invalid name: ${ name }` );
-        util.assert( typeof tester === 'function', `invalid tester: ${ tester }` );
+        utils.assert( typeof name === 'string', `invalid name: ${ name }` );
+        utils.assert( typeof tester === 'function', `invalid tester: ${ tester }` );
 
         for ( let i = 0; i < registeredTests.length; i++ ) {
           const test = registeredTests[ i ];
@@ -74,7 +74,7 @@
             return;
           }
         };
-        util.assert( false, 'test was not found' );
+        utils.assert( false, 'test was not found' );
       } );
       return truenit;
     }
@@ -88,40 +88,77 @@
 
       if ( registeredTests.length > 0 ) {
 
-        util.test( {
+        utils.test( {
 
           // Test each test in registeredTests
           tester: () => {
-            registeredTests.forEach( truenit.testModule );
+            registeredTests.forEach( ( test ) => { truenit.test( test.name, test.tester ) } );
           },
 
           // Print before and after testing
-          before: () => { util.println( 'Testing all...\n\n', 4 ) },
-          after: () => { util.println( 'All tests passed!\n\n', 32 ) }
+          before: () => { utils.println( 'Testing all...\n', 4 ) },
+          after: () => { utils.println( '\nAll tests passed!\n\n', 32 ) }
         } );
       }
     }
 
+    /**
+     * Tests a test (which is defined by a name and a tester field)
+     * Formats the message in a tab and aligns the 'passed' or error string horizontal for each test.
+     *
+     * @param {string} name - the name of the test
+     * @param {function} tester
+     * @return {truenit} for chaining
+     */
+    static test( name, tester ) {
 
+      // Wrap the registering of the task so that errors are correctly formatted.
+      utils.wrap( () => {
 
-  //   /**
-  //    * Test method wrapper for a module. Should be wrapped inside of truenit.start().
-  //    *
-  //    * @param {string} name - the name of the module
-  //    * @param {function} tester
-  //    */
-  //   static testModule( name, tester ) {
-  //     wrap( () => {
-  //       assert( typeof name === 'string', `invalid name: ${name}` );
-  //     } );
-  //     const prefix = `  Testing ${name}...  `;
-  //     const numberOfSpaces = truenit.maxLength - prefix.length;
-  //     const passedString = ' '.repeat( numberOfSpaces  ) + 'passed\n';
+        utils.assert( typeof name === 'string', `invalid name: ${ name }` );
+        utils.assert( typeof tester === 'function', `invalid tester: ${ tester }` );
 
-  //     truenit.latestModulePrefix = prefix;
+        //----------------------------------------------------------------------------------------
+        // Keep a flag of whether or not the test is registered.
+        let testIsRegistered = false;
+        registeredTests.forEach( test => {
 
-  //     truenit.test( tester, prefix, 2, passedString, 0 );
-  //   }
+          if ( test.name === name && test.tester === tester ) testIsRegistered = true;
+
+        } );
+
+        //----------------------------------------------------------------------------------------
+        // Get the longest test string to calculate where the error/passed string is located
+        let longestTestString = utils.newTestString( name, testIsRegistered ).length;
+
+        if ( testIsRegistered ) {
+          registeredTests.forEach( test => {
+
+            let testString = utils.newTestString( test.name, true );
+
+            if ( testString.length > longestTestString ) longestTestString = testString.length;
+          } );
+        }
+
+        //----------------------------------------------------------------------------------------
+        // Calculate the number of spaces to prepend to the after message
+        const testString = utils.newTestString( name, testIsRegistered );
+        const spacesPrepended = longestTestString - testString.length;
+
+        //----------------------------------------------------------------------------------------
+        // Test the tester
+        utils.test( {
+          tester,
+          // Print before and after testing
+          before: () => { utils.println( testString, testIsRegistered ? 2 : 0 ) },
+          after: () => { utils.print( utils.preSpace( 'Passed.', spacesPrepended ) ) },
+          failure: spacesPrepended
+        } );
+
+        if ( !testIsRegistered ) utils.println( '\n' );
+
+      } );
+    }
 
   //   /**
   //    * Tests that a predicate is truthy.
@@ -138,13 +175,7 @@
 
       //----------------------------------------------------------------------------------------
       // Make sure the alignment is correct by getting the maxTestString of each module.
-      let maxTestString = 0;
+  }
 
-      registeredTests.forEach( module => {
-        if ( util.newTestString( module.name ) > maxTestString ) {
-          maxTestString = util.newTestString( module.name ).length;
-        }
-      } );
-
-  // module.exports = truenit;
+  module.exports = truenit;
 } )();
