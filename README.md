@@ -63,8 +63,7 @@ truenit.start();
 ```
 
 (4) Enjoy the output.
-![image](https://user-images.githubusercontent.com/42391580/68091911-d8cb2780-fe42-11e9-898f-8889253019e2.png)
-![image](https://user-images.githubusercontent.com/42391580/68091926-ff895e00-fe42-11e9-96e2-87b5c35e90e4.png)
+
 
 
 ## Individual tests
