@@ -74,13 +74,12 @@ truenit.test( 'Module1', () => {
 } );
 ```
 
-### Get Involved
+## Get Involved
 
 Contact me via <a href="mailto:brandon.li820@gmail.com" target="_blank"> email</a>.
 
 Help improve the app by creating a <a href="https://github.com/brandonLi8/truenit/issues" target="_blank">New Issue</a>.
 
-#### License
 See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a>
 
 © 2019 [Brandon Li](https://brandonwli.com)
