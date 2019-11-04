@@ -38,7 +38,7 @@
    * @param {*} message
    * @param {...number} [colors] - the codes for the colors and styles (can pass multiple).
    *
-   *   ## styles         | ## Foreground     |  ## Background
+   *   ## Styles         | ## Foreground     |  ## Background
    *     0 - Reset       |   30 - FgBlack    |   40 - BgBlack
    *     1 - Bright      |   31 - FgRed      |   41 - BgRed
    *     2 - Dim         |   32 - FgGreen    |   42 - BgGreen
