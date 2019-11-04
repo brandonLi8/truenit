@@ -9,8 +9,9 @@
 #            https://github.com/brandonLi8/grunt-config/Gruntfile.js). Your repository's
 #            Gruntfile must extend to this Gruntfile to run the command.
 #
-# Entry point for travis-cli.org. This file instructs travis-ci.org to solely check that every branch can be 'built' by
-# checking if everything can be linted. This is to prevent rogue commits/merges on this project that aren't linted.
+# Entry point for travis-cli.org. This file instructs travis-ci.org to solely check that master can be 'built' by
+# checking if everything can be linted. This is to prevent rogue commits/merges on this project that aren't linted
+# tested.
 #
 # @author Brandon Li <brandon.li820@gmail.com>
 #
@@ -24,7 +25,7 @@ node_js:
 
 branches:
   only:
-    - /.*/                        # test every branch.  This file needs to be present on all branches as well.
+  - master
 
 before_script:
   - npm prune -production=true    # prune - ensure a fresh copy of node_modules
@@ -36,4 +37,4 @@ script:
   - npm test                      # test that everything can be built
 
 after_script:
-  - echo truenit is stable!
+  - echo Travis is done. Bye!
