@@ -32,13 +32,13 @@
   /**
    * Alternative to `console.log` for printing into the terminal. Instead, print will:
    *   - Not assume each message is on a newline. The user must specify if there is a newline via `\n`
-   *   - Contain an option to colorize the output of the message using a template (which defaults to true).
-   *     The user can specify the color based on a number code (see below).
+   *   - Contain an option to colorize the output of the message and stylize. The user can specify the colors based on
+   *     number codes (see below).
    *
    * @param {*} message
-   * @param {number} [color] - the code for the color. See below:
+   * @param {...number} [colors] - the codes for the colors and styles (can pass multiple).
    *
-   *   ## Normal Codes   | ## Fg Codes       |  ## Bg Codes
+   *   ## styles         | ## Foreground     |  ## Background
    *     0 - Reset       |   30 - FgBlack    |   40 - BgBlack
    *     1 - Bright      |   31 - FgRed      |   41 - BgRed
    *     2 - Dim         |   32 - FgGreen    |   42 - BgGreen
@@ -48,17 +48,24 @@
    *     6 - Hidden      |   36 - FgCyan     |   46 - BgCyan
    *                     |   37 - FgWhite    |   47 - BgWhite
    *
-   * @param {boolean} [useTemplate] - if true, will ignore the color code and print exactly what the message contains.
+   * NOTE: You can pass in multiple color codes via spread notation.
+   *       For instance, `print( 'hello world', 1, 31, 41 )` will print the bright and red with a red background.
+   *
+   * NOTE: If no color codes are passed in, it prints normally with color code 0.
    */
-  function print( message, color = 0, useTemplate = true ) {
-
+  function print( message, ...colors ) {
     // Attempt type coercion of message.
     assert( message !== null && message !== undefined, `invalid message: ${ message }` );
-    assert( typeof color === 'number', `invalid color: ${ color }` );
-    assert( typeof useTemplate === 'boolean', `invalid useTemplate: ${ useTemplate }` );
+    assert( Array.isArray( colors ) && colors.every( code => typeof code === 'number' ),
+      `invalid colors: ${ colors }` );
 
-    // Determine which message type to use.
-    const printMessage = ( useTemplate === true ) ? `\x1b[${ color }m${ message }\x1b[0m` : `${ message }`;
+    //----------------------------------------------------------------------------------------
+    // Format the message via ANSI escape codes.
+    let printMessage = '';
+    colors.forEach( code => {
+      printMessage += `\x1b[${ code }m`;
+    } );
+    printMessage += `${ message }\x1b[0m`;
 
     // Use process.stdout.write to allow for same line printing
     process.stdout.write( printMessage );
@@ -68,11 +75,10 @@
    * See print() (above). Prints but but on a new line.
    *
    * @param {*} message
-   * @param {number} [color] - see print() (above)
-   * @param {boolean} [useTemplate] - see print() (above)
+   * @param {...number} [colors] - see print() (above).
    */
-  function println( message, color, useTemplate ) {
-    print( `\n${ message }`, color, useTemplate );
+  function println( message, ...colors ) {
+    print( `\n${ message }`, ...colors );
   }
 
   //----------------------------------------------------------------------------------------
