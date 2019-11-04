@@ -1,19 +1,23 @@
 // Copyright © 2019 Brandon Li. All rights reserved.
 
 /**
- * Main file that contains the public facing code for this project.
+ * Main entry point for the project (file when `require( 'truenit' )` is called).
+ * Contains the public facing code for this project.
  *
- * This module should be loaded as a static class (no instance is necessary).
+ * This module is built as a static class (no instance is necessary).
  *
  * ## Future Maintainers:
- *  - see `https://github.com/brandonLi8/truenit/blob/master/README.md` for an overview of the project
- *  - see `https://github.com/brandonLi8/truenit/blob/master/docs/implementation-notes.md` before updating.
- *  - see `https://github.com/brandonLi8/truenit/blob/master/tests/test-truenit.js` for tests and an example of the api.
+ *  - See `../README.md` for an overview of the project
+ *  - See `../docs/implementation-notes.md` before updating.
+ *  - See `../docs/api-model.md` for an overview of the entire API.
+ *  - See `../tests/test-truenit.js` for tests and an example of the API.
+ *  - See `../docs/new-release-guide.md` for new releases.
+ *  - See `../docs/code-style-guideline.md` for the code style guideline.
  *
  * @author Brandon Li <brandon.li820@gmail.com>
  */
 
-( () => {
+module.exports = ( () => {
   'use strict';
 
   // modules
@@ -121,8 +125,8 @@
           tester: () => ( registeredTests.forEach( test => ( truenit.test( test.name, test.tester ) ) ) ),
 
           // Print before and after testing
-          before: () => ( utils.print( '\x1b[1m\x1b[4mTesting all...\n', 0 ) ),
-          after: () => ( utils.println( '\n\x1b[1mAll tests passed!\n\n', 32 ) )
+          before: () => ( utils.print( '\x1b[1m\x1b[4mTesting all...\n\n', 0 ) ),
+          after: () => ( utils.println( '\x1b[1mAll tests passed!\n\n', 32 ) )
         } );
       }
     }
@@ -175,13 +179,10 @@
         utils.test( {
           tester,
           // Print before and after testing
-          before: () => ( utils.println( testString, testIsRegistered ? 2 : 0 ) ),
-          after: () => ( utils.print( utils.preSpace( 'Passed.', spacesPrepended ) ) ),
+          before: () => ( utils.print( testString, testIsRegistered ? 2 : 0 ) ),
+          after: () => ( utils.print( utils.preSpace( 'Passed.\n', spacesPrepended ) ) ),
           failure: spacesPrepended
         } );
-
-        if ( !testIsRegistered ) utils.println( '\n' );
-
       } );
     }
 
@@ -229,5 +230,5 @@
     }
   }
 
-  module.exports = truenit;
+  return truenit;
 } )();

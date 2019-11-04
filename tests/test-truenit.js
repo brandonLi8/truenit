@@ -17,13 +17,14 @@
 
   // modules
   const truenit = require( '../src/truenit' );
-
+  const utils = require( '../src/utils' );
 
   //----------------------------------------------------------------------------------------
-  // Test 1: register multiple tests that pass and start.
+  // Test 1: Register passing tests start.
   //----------------------------------------------------------------------------------------
-  console.log( '//----------------------------------------------------------------------------------------' );
-  console.log( 'Testing test 1:\n' );
+
+  line();
+  printBold( 'Test 1...\n\n' );
 
   truenit.registerTest( 'Module_1_should_pass', () => {
     truenit.ok( 5 === 5, 'will not be called' );
@@ -38,19 +39,15 @@
   } );
 
   truenit.start();
+  truenit.clearTests(); // clear all registered tests for the next test
 
-  console.log( 'Test 1 passed!' );
-  console.log( '//----------------------------------------------------------------------------------------' );
-
-
+  printBold( 'Test 1 passed!\n' );
 
   //----------------------------------------------------------------------------------------
   // Test 2: don't register multiple tests that pass and start.
   //----------------------------------------------------------------------------------------
-  truenit.clearTests(); // clear all registered tests
-
-  console.log( '//----------------------------------------------------------------------------------------' );
-  console.log( 'Testing test 2:\n' );
+  line();
+  printBold( 'Test 2...\n\n' );
 
   truenit.test( 'Module_1_should_pass', () => {
     truenit.notOk( 6 === 5, 'will not be called' );
@@ -66,16 +63,13 @@
 
   truenit.start(); // shouldn't log anything
 
-  console.log( 'Test 2 passed!' );
-  console.log( '//----------------------------------------------------------------------------------------' );
+  printBold( '\nTest 2 passed!\n' );
 
   //----------------------------------------------------------------------------------------
   // Test 3: don't register multiple tests with some that fail and start.
   //----------------------------------------------------------------------------------------
-  truenit.clearTests(); // clear all registered tests
-
-  console.log( '//----------------------------------------------------------------------------------------' );
-  console.log( 'Testing test 3:\n' );
+  line();
+  printBold( 'Test 3:\n\n',  );
 
   truenit.test( 'Module_1_should_pass', () => {
     truenit.ok( 5 === 5, 'will not be called' );
@@ -90,18 +84,14 @@
     truenit.ok( 6 === 5, 'will not be called' );
   } );
 
-  console.log( 'Test 3 passed!' );
-  console.log( '//----------------------------------------------------------------------------------------' );
-
+  printBold( '\nTest 3 passed!\n' );
 
 
   //----------------------------------------------------------------------------------------
   // Test 4: register multiple tests with some that fail and start.
   //----------------------------------------------------------------------------------------
-  truenit.clearTests(); // clear all registered tests
-
-  console.log( '//----------------------------------------------------------------------------------------' );
-  console.log( 'Testing test 4:\n' );
+  line();
+  printBold( 'Test 4:\n\n',  );
 
   truenit.registerTest( 'Module_1_should_pass', () => {
     truenit.notOk( 7 === 5, 'will not be called' );
@@ -126,9 +116,26 @@
 
   truenit.start();
 
-  console.log( 'Test 4 passed!' );
-  console.log( '//----------------------------------------------------------------------------------------' );
+  printBold( '\nTest 4 passed!\n' );
 
 
-  console.log( 'All Test Passed. Bye!' );
+  utils.print( '\nAll Test Passed. Bye!\n', 32 );
+
+
+  //----------------------------------------------------------------------------------------
+  // Helpers
+  //----------------------------------------------------------------------------------------
+
+  /**
+   * Prints a line.
+   */
+  function line() {
+    utils.println( '————————————————————————————————————————————————————————————————————————————\n\n', 2 );
+  }
+  /**
+   * Prints in bold and underlined.
+   */
+  function printBold( text ) {
+    utils.print( '\x1b[1m\x1b[4m' + text, 1 );
+  }
 } )();
