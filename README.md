@@ -20,16 +20,23 @@
 
 # [Truenit](https://www.npmjs.com/package/truenit)
 
+<!---------------------------------------------------------------------------->
 <!-- Badges -->
 [![Build Status](https://travis-ci.org/brandonLi8/truenit.svg?branch=master)](https://travis-ci.org/brandonLi8/truenit)
 [![npm version](https://badge.fury.io/js/truenit.svg)](https://badge.fury.io/js/truenit)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FbrandonLi8%2Ftruenit?ref=badge_shield)
 
+
+
+<!---------------------------------------------------------------------------->
 <!-- Description -->
-<blockquote align="left">
-  <em>Truenit</em> (<code>/ˈtruːnɪt/</code>) is a lightweight, easy-to-use, dependency-free Javascript unit testing library with a simple, yet powerful API.
+<blockquote align="left"><b>
+  <em>Truenit</em> (<code>/ˈtruːnɪt/</code>) is a lightweight, easy-to-use, dependency-free Javascript unit testing library with a simple, yet powerful API.</b>
 </blockquote>
 
+
+
+<!---------------------------------------------------------------------------->
 <!-- Purposes -->
 ## When should I use Truenit?
 
@@ -43,6 +50,9 @@
 $ npm install truenit --save-dev
 ```
 
+
+<!---------------------------------------------------------------------------->
+<!-- Normal Usage -->
 ## Usage
 #### 1. Import the library in your test file:
 ```javascript
@@ -92,6 +102,9 @@ Testing all...
 $ _
 ```
 
+
+<!---------------------------------------------------------------------------->
+<!-- Individual Tests -->
 ## Individual tests
 You can also individually test one at a time:
 ```javascript
@@ -114,11 +127,25 @@ truenit.throws( 'Module2', () => {
 } );
 
 ```
-## Get Involved
 
+
+<!---------------------------------------------------------------------------->
+<!-- Documentation: Quick Links for users and future developers -->
+## Documentation
+- [API Model](https://github.com/brandonLi8/truenit/blob/master/docs/api-model.md) for a full comprehensive documentation of the **entire** API.
+- [Implementation Notes](https://github.com/brandonLi8/truenit/blob/master/docs/implementation-notes.md) for future developers.
+- [New Release Guide](https://github.com/brandonLi8/truenit/blob/master/docs/new-release-guide.md)
+- [Code Style Guideline](https://github.com/brandonLi8/truenit/blob/master/docs/code-style-guideline.md)
+
+
+<!---------------------------------------------------------------------------->
+<!-- Contact information. Use <a></a> tags to open the links in a new tab -->
+## Get Involved
 Contact me via <a href="mailto:brandon.li820@gmail.com" target="_blank"> email</a>.
 
-Help improve by creating a <a href="https://github.com/brandonLi8/truenit/issues" target="_blank">New Issue</a>.
+Help improve **truenit** by creating a <a href="https://github.com/brandonLi8/truenit/issues" target="_blank">New Issue</a>.
 
 
-<sub>Copyright © 2019 [Brandon Li](https://brandonwli.com). All Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;&nbsp;&nbsp;See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a></sub>
+<!---------------------------------------------------------------------------->
+<!-- Copyright -->
+<sub>Copyright © 2019 [Brandon Li](https://brandonwli.com). All Rights Reserved.&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a></sub>
