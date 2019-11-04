@@ -89,13 +89,13 @@ $ npm test
 
 Testing all...
 
-   Testing Module1...     Pass
-   Testing Module2...     Pass
-   Testing Node...        Pass
-   Testing ScreenView...  Pass
-   Testing Property...    Pass
-   Testing OtherClass...  Pass
-   Testing S...           Pass
+   Testing Module1...     Passed.
+   Testing Module2...     Passed.
+   Testing Node...        Passed.
+   Testing ScreenView...  Passed.
+   Testing Property...    Passed.
+   Testing OtherClass...  Passed.
+   Testing S...           Passed.
    
  All tests passed!
  
@@ -133,6 +133,7 @@ truenit.throws( 'Module2', () => {
 <!-- Documentation: Quick Links for users and future developers -->
 ## Documentation
 - [API Model](https://github.com/brandonLi8/truenit/blob/master/docs/api-model.md) for a full comprehensive documentation of the **entire** API.
+- [Truenit Test File](https://github.com/brandonLi8/truenit/blob/master/tests/test-truenit) for an example.
 - [Implementation Notes](https://github.com/brandonLi8/truenit/blob/master/docs/implementation-notes.md) for future developers.
 - [New Release Guide](https://github.com/brandonLi8/truenit/blob/master/docs/new-release-guide.md)
 - [Code Style Guideline](https://github.com/brandonLi8/truenit/blob/master/docs/code-style-guideline.md)
