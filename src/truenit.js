@@ -247,13 +247,11 @@ module.exports = ( () => {
     static approximate( a, b, message, epsilon = 0.000001 ) {
       utils.assert( typeof a === 'number', `invalid 1st arg: ${ a }` );
       utils.assert( typeof b === 'number', `invalid 2nd arg: ${ b }` );
-      utils.assert( typeof message === 'string', `invalid message: ${message}` );
-      utils.assert( typeof epsilon === 'number' && epsilon > 0 && epsilon < 1, `invalid epsilon: ${epsilon}` );
+      utils.assert( typeof message === 'string', `invalid message: ${ message }` );
+      utils.assert( typeof epsilon === 'number' && epsilon > 0 && epsilon < 1, `invalid epsilon: ${ epsilon }` );
 
       this.ok( Math.abs( a - b ) < epsilon, `${ message } Expected: ${ b }, result: ${ a }` );
     }
-
-
   }
 
   return truenit;
