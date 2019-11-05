@@ -1,13 +1,14 @@
 // Copyright © 2019 Brandon Li. All rights reserved.
 
-/* eslint no-console: 0 */
-
 /**
- * Entry point for truenit tests. To run, run `npm test` || `node tests/test-truenit.js`.
+ * Entry point for truenit tests. To run: `npm test` or `node tests/test-truenit.js`.
  *
  * ## Future Maintainers:
- *  - see `https://github.com/brandonLi8/truenit/blob/master/README.md` for an overview of the project
- *  - see `https://github.com/brandonLi8/truenit/blob/master/docs/implementation-notes.md` before updating.
+ *  - See `../README.md` for an overview of the project
+ *  - See `../docs/implementation-notes.md` before updating.
+ *  - See `../docs/api-model.md` for an overview of the entire API.
+ *  - See `../docs/new-release-guide.md` for new releases.
+ *  - See `../docs/code-style-guideline.md` for the code style guideline.
  *
  * @author Brandon Li <brandon.li820@gmail.com>
  */
@@ -128,7 +129,7 @@
   utils.print( '|———————————————————————————————————————————————————————————————————————————\n', 32 );
   utils.print( '| Test 4 passed!                                                            \n', 32 );
   utils.print( '|———————————————————————————————————————————————————————————————————————————\n', 32 );
-  
+
 
   utils.println( '|———————————————————————————————————————————————————————————————————————————\n', 1, 32 );
   utils.print( '| All Tests Passed! Bye!                                                    \n', 1, 32 );

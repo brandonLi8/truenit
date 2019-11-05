@@ -126,7 +126,7 @@ module.exports = ( () => {
 
           // Print before and after testing
           before: () => ( utils.print( 'Testing all...\n\n', 0, 4 ) ),
-          after: () => ( utils.println( 'All tests passed!\n\n', 32, ) )
+          after: () => ( utils.println( 'All tests passed!\n\n', 32 ) )
         } );
       }
     }
