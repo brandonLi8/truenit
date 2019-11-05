@@ -40,6 +40,10 @@
     truenit.notOk( false, 'will not be called' );
   } );
 
+  truenit.registerTest( 'Module_3', () => {
+    truenit.approximate( 1.00000000000001, 1.0, 'approximate failed' );
+  } );
+
   truenit.start();
   truenit.clearTests(); // clear all registered tests for the next test
 

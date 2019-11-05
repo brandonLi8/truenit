@@ -192,7 +192,20 @@ module.exports = ( () => {
     }
 
     /**
-     * A generic unit tester function.
+     * Wraps a tester inside of try-catch hierarchy such that it expects to throw an error and tests that it does.
+     * @public
+     *
+     * @param {string} name - the name of the test
+     * @param {function} tester
+     */
+    static throws( name, tester ) {
+      utils.wrap( () => {
+        truenit.test( name, utils.reverseTester( name, tester ) );
+      } );
+    }
+
+    /**
+     * A generic unit test function.
      * @public
      *
      * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
@@ -206,7 +219,7 @@ module.exports = ( () => {
     }
 
     /**
-     * A generic unit tester function that tests a predicate is not truthy.
+     * A generic unit test function that tests a predicate is not truthy.
      * @public
      *
      * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
@@ -220,17 +233,27 @@ module.exports = ( () => {
     }
 
     /**
-     * Wraps a tester inside of try-catch hierarchy such that it expects to throw an error and tests that it does.
+     * A unit test function that tests that two values are approximately equal (within epsilon distance).
      * @public
      *
-     * @param {string} name - the name of the test
-     * @param {function} tester
+     * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
+     *       of a tester.
+     *
+     * @param {number} a - value 1
+     * @param {number} b - value 2
+     * @param {string} [message] - optional message to add on to the error
+     * @param {number=0.000001} [epsilon] - a and b must be within this distance
      */
-    static throws( name, tester ) {
-      utils.wrap( () => {
-        truenit.test( name, utils.reverseTester( name, tester ) );
-      } );
+    static approximate( a, b, message, epsilon = 0.000001 ) {
+      utils.assert( typeof a === 'number', `invalid 1st arg: ${ a }` );
+      utils.assert( typeof b === 'number', `invalid 2nd arg: ${ b }` );
+      utils.assert( typeof message === 'string', `invalid message: ${message}` );
+      utils.assert( typeof epsilon === 'number' && epsilon > 0 && epsilon < 1, `invalid epsilon: ${epsilon}` );
+
+      this.ok( Math.abs( a - b ) < epsilon, `${ message } Expected: ${ b }, result: ${ a }` );
     }
+
+
   }
 
   return truenit;
