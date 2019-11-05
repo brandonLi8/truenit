@@ -42,11 +42,11 @@
    *     0 - Reset       |   30 - FgBlack    |   40 - BgBlack
    *     1 - Bright      |   31 - FgRed      |   41 - BgRed
    *     2 - Dim         |   32 - FgGreen    |   42 - BgGreen
-   *     3 - Underscore  |   33 - FgYellow   |   43 - BgYellow
-   *     4 - Blink       |   34 - FgBlue     |   44 - BgBlue
-   *     5 - Reverse     |   35 - FgMagenta  |   45 - BgMagenta
-   *     6 - Hidden      |   36 - FgCyan     |   46 - BgCyan
-   *                     |   37 - FgWhite    |   47 - BgWhite
+   *     3 - Italics     |   33 - FgYellow   |   43 - BgYellow
+   *     4 - Underscore  |   34 - FgBlue     |   44 - BgBlue
+   *     5 - Blink       |   35 - FgMagenta  |   45 - BgMagenta
+   *     7 - Reverse     |   36 - FgCyan     |   46 - BgCyan
+   *     8 - Hidden      |   37 - FgWhite    |   47 - BgWhite
    *
    * NOTE: You can pass in multiple color codes via spread notation.
    *       For instance, `print( 'hello world', 1, 31, 41 )` will print the bright and red with a red background.

@@ -125,8 +125,8 @@ module.exports = ( () => {
           tester: () => ( registeredTests.forEach( test => ( truenit.test( test.name, test.tester ) ) ) ),
 
           // Print before and after testing
-          before: () => ( utils.print( 'Testing all...\n\n', 0, 1, 3 ) ),
-          after: () => ( utils.println( 'All tests passed!\n\n', 1, 32 ) )
+          before: () => ( utils.print( 'Testing all...\n\n', 0, 4 ) ),
+          after: () => ( utils.println( 'All tests passed!\n\n', 32, ) )
         } );
       }
     }
