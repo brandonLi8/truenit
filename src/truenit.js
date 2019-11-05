@@ -33,6 +33,7 @@ module.exports = ( () => {
     /**
      * Registers a test to the registeredTests array. All tests should be registered before calling `truenit.start()`.
      * This is done so the formatting of the output is aligned.
+     * @public
      *
      * @param {string} name - the name of the test. This is what is part of the output.
      * @param {function} tester - the function that executes the test. Called when `truenit.start()` is called.
@@ -59,6 +60,7 @@ module.exports = ( () => {
     /**
      * Registers a test to the registeredTests array such that it expects a error to be thrown. Errors if no error
      * is thrown.
+     * @public
      *
      * @param {string} name - the name of the test. This is what is part of the output.
      * @param {function} tester - the function that executes the test. Called when `truenit.start()` is called.
@@ -84,6 +86,7 @@ module.exports = ( () => {
 
     /**
      * Removes a test (first appearance) from the registeredTests array. If the test isn't present, an error is thrown.
+     * @public
      *
      * @param {string} name - the name of the test.
      * @param {function} tester - the function that executes the test.
@@ -112,6 +115,7 @@ module.exports = ( () => {
 
     /**
      * Tests each tests in registeredTests If there aren't any tests, nothing happens.
+     * @public
      *
      * @returns {truenit} for chaining
      */
@@ -134,6 +138,7 @@ module.exports = ( () => {
     /**
      * Tests a test (which is defined by a name and a tester field)
      * Formats the message in a tab and aligns the 'passed' or error string horizontal for each test.
+     * @public
      *
      * @param {string} name - the name of the test
      * @param {function} tester
@@ -188,11 +193,10 @@ module.exports = ( () => {
 
     /**
      * A generic unit tester function.
+     * @public
      *
      * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
      *       of a tester.
-     *
-     * @public
      *
      * @param {boolean} predicate
      * @param {string} [message]
@@ -202,12 +206,11 @@ module.exports = ( () => {
     }
 
     /**
-     * A generic unit tester function that tests a predicate is falsy.
+     * A generic unit tester function that tests a predicate is not truthy.
+     * @public
      *
      * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
      *       of a tester.
-     *
-     * @public
      *
      * @param {boolean} predicate
      * @param {string} [message]
