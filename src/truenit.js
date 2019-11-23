@@ -292,7 +292,7 @@ module.exports = ( () => {
 
       this.equals( a.length, b.length, errorMessage + ' (length different)' );
       for ( let i = 0; i < a.length; i++ ) {
-        this.approximate( assert, aSorted[ i ], bSorted[ i ], errorMessage + ' (index ' + i + ')' );
+        this.approximate( aSorted[ i ], bSorted[ i ], errorMessage + ' (index ' + i + ')' );
       }
     }
   }
