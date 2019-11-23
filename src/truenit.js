@@ -262,10 +262,38 @@ module.exports = ( () => {
      * @param {number=0.000001} [epsilon] - a and b must be within this distance
      */
     static approximate( a, b, message, epsilon = 0.000001 ) {
+      utils.assert( typeof a === 'number', `invalid 1st arg: ${ a }` );
+      utils.assert( typeof b === 'number', `invalid 2nd arg: ${ b }` );
       utils.assert( !message || typeof message === 'string', `invalid message: ${ message }` );
       utils.assert( typeof epsilon === 'number' && epsilon > 0 && epsilon < 1, `invalid epsilon: ${ epsilon }` );
 
       this.ok( Math.abs( a - b ) < epsilon, message || `Expected: ${ b }, result: ${ a }` );
+    }
+
+    /**
+     * A unit test function that tests that the values of two arrays are approximately equal (within epsilon distance).
+     * @public
+     *
+     * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
+     *       of a tester.
+     *
+     * @param {*[]} a - array 1
+     * @param {*[]} b - array 2
+     * @param {string} [message] - optional message to add on to the error
+     * @param {number=0.000001} [epsilon] - a and b must be within this distance
+     */
+    static arrayApproximate( a, b, message, epsilon = 0.000001 ) {
+      utils.assert( Array.isArray( a ), `invalid 1st arg: ${ a }` );
+      utils.assert( Array.isArray( b ), `invalid 1st arg: ${ b }` );
+
+      const aSorted = a.slice().sort();
+      const bSorted = b.slice().sort();
+      const errorMessage = message || `Expected: ${ b }, result: ${ a }`;
+
+      this.equals( a.length, b.length, msg + ' (length different)' );
+      for ( let i = 0; i < a.length; i++ ) {
+        this.approximate( assert, aSorted[ i ], bSorted[ i ], msg + ' (index ' + i + ')' );
+      }
     }
   }
 
