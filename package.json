@@ -7,7 +7,7 @@
   },
   "license": "MIT",
   "main": "src/truenit.js",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "description": "\"Truenit\" is a lightweight dependency-free Unit Testing framework.",
   "repository": {
     "type": "git",
