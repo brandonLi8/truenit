@@ -233,6 +233,25 @@ module.exports = ( () => {
     }
 
     /**
+     * A unit test function that tests that two values are exactly equal.
+     * @public
+     *
+     * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
+     *       of a tester.
+     *
+     * @param {number} a - value 1
+     * @param {number} b - value 2
+     * @param {string} [message] - optional message to add on to the error
+     */
+    static equals( a, b, message ) {
+      utils.assert( typeof a === 'number', `invalid 1st arg: ${ a }` );
+      utils.assert( typeof b === 'number', `invalid 2nd arg: ${ b }` );
+      utils.assert( !message || typeof message === 'string', `invalid message: ${ message }` );
+
+      this.ok( a === b, message || `Expected: ${ b }, result: ${ a }` );
+    }
+
+    /**
      * A unit test function that tests that two values are approximately equal (within epsilon distance).
      * @public
      *
