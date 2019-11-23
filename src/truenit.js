@@ -290,9 +290,9 @@ module.exports = ( () => {
       const bSorted = b.slice().sort();
       const errorMessage = message || `Expected: ${ b }, result: ${ a }`;
 
-      this.equals( a.length, b.length, msg + ' (length different)' );
+      this.equals( a.length, b.length, errorMessage + ' (length different)' );
       for ( let i = 0; i < a.length; i++ ) {
-        this.approximate( assert, aSorted[ i ], bSorted[ i ], msg + ' (index ' + i + ')' );
+        this.approximate( assert, aSorted[ i ], bSorted[ i ], errorMessage + ' (index ' + i + ')' );
       }
     }
   }
