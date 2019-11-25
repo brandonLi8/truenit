@@ -233,6 +233,23 @@ module.exports = ( () => {
     }
 
     /**
+     * A unit test function that tests that two values are exactly equal.
+     * @public
+     *
+     * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
+     *       of a tester.
+     *
+     * @param {*} a - value 1
+     * @param {*} b - value 2
+     * @param {string} [message] - optional message to add on to the error
+     */
+    static equals( a, b, message ) {
+      utils.assert( !message || typeof message === 'string', `invalid message: ${ message }` );
+
+      this.ok( a === b, message || `Expected: ${ b }, result: ${ a }` );
+    }
+
+    /**
      * A unit test function that tests that two values are approximately equal (within epsilon distance).
      * @public
      *
@@ -251,6 +268,32 @@ module.exports = ( () => {
       utils.assert( typeof epsilon === 'number' && epsilon > 0 && epsilon < 1, `invalid epsilon: ${ epsilon }` );
 
       this.ok( Math.abs( a - b ) < epsilon, message || `Expected: ${ b }, result: ${ a }` );
+    }
+
+    /**
+     * A unit test function that tests that the values of two arrays are approximately equal (within epsilon distance).
+     * @public
+     *
+     * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
+     *       of a tester.
+     *
+     * @param {*[]} a - array 1
+     * @param {*[]} b - array 2
+     * @param {string} [message] - optional message to add on to the error
+     * @param {number=0.000001} [epsilon] - a and b must be within this distance
+     */
+    static arrayApproximate( a, b, message, epsilon = 0.000001 ) {
+      utils.assert( Array.isArray( a ), `invalid 1st arg: ${ a }` );
+      utils.assert( Array.isArray( b ), `invalid 1st arg: ${ b }` );
+
+      const aSorted = a.slice().sort();
+      const bSorted = b.slice().sort();
+      const errorMessage = message || `Expected: ${ b }, result: ${ a }`;
+
+      this.equals( a.length, b.length, errorMessage + ' (length different)' );
+      for ( let i = 0; i < a.length; i++ ) {
+        this.approximate( aSorted[ i ], bSorted[ i ], errorMessage + ' (index ' + i + ')' );
+      }
     }
   }
 

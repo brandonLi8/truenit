@@ -7,7 +7,7 @@
   },
   "license": "MIT",
   "main": "src/truenit.js",
-  "version": "0.9.6",
+  "version": "0.9.12",
   "description": "\"Truenit\" is a lightweight dependency-free Unit Testing framework.",
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
     "test": "node tests/test-truenit.js"
   },
   "devDependencies": {
-    "@brandonli8/grunt-config": "0.0.0-dev.7"
+    "@brandonli8/grunt-config": "0.0.0-dev.8"
   },
   "bugs": {
     "url": "https://github.com/brandonLi8/truenit/issues",
