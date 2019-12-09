@@ -11,6 +11,8 @@
 ( () => {
   'use strict';
 
+  let printsEnabled = true;
+
   //----------------------------------------------------------------------------------------
   /**
    * A generic assertion function.
@@ -54,6 +56,7 @@
    * NOTE: If no color codes are passed in, it prints normally with color code 0.
    */
   function print( message, ...colors ) {
+    if ( !printsEnabled ) return;
     // Attempt type coercion of message.
     assert( message !== null && message !== undefined, `invalid message: ${ message }` );
     assert( Array.isArray( colors ) && colors.every( code => typeof code === 'number' ),
@@ -154,12 +157,17 @@
     assert( typeof tester === 'function', `invalid tester: ${ tester }` );
 
     return () => {
+      // disable prints
+      printsEnabled = false;
       try {
         tester();
       }
       catch( error ) {
+        printsEnabled = true;
         return; // do nothing and exit
       }
+
+      printsEnabled = true;
       // No error happened, which is wrong
       throw new Error( `${ name } test did not throw.` );
     };
