@@ -192,16 +192,14 @@ module.exports = ( () => {
     }
 
     /**
-     * Wraps a tester inside of try-catch hierarchy such that it expects to throw an error and tests that it does.
+     * A static method to test that a function throws an error. Should be wrapped inside a tester.
      * @public
      *
-     * @param {string} name - the name of the test
      * @param {function} tester
+     * @param {string} [message]
      */
-    static throws( name, tester ) {
-      utils.wrap( () => {
-        truenit.test( name, utils.reverseTester( name, tester ) );
-      } );
+    static throws( tester, message ) {
+      utils.reverseTester( message || 'throw test failed', tester )();
     }
 
     /**
