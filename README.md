@@ -149,4 +149,4 @@ Help improve **truenit** by creating a <a href="https://github.com/brandonLi8/tr
 
 <!---------------------------------------------------------------------------->
 <!-- Copyright -->
-<sub>Copyright © 2019 [Brandon Li](https://brandonwli.com). All Rights Reserved.&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;See the <a href="https://github.com/brandonLi8/truenit/LICENSE" target="_blank">LICENSE</a></sub>
+<sub>Copyright © 2019 [Brandon Li](https://brandonwli.com). All Rights Reserved.&nbsp;&nbsp;<b>|</b>&nbsp;&nbsp;See the <a href="https://github.com/brandonLi8/truenit/blob/master/LICENSE" target="_blank">LICENSE</a></sub>
