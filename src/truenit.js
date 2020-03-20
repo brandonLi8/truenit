@@ -248,7 +248,7 @@ module.exports = ( () => {
     }
 
     /**
-     * A unit test function that tests that two arrays contain the same values, evaluated with '==='.
+     * A unit test function that tests that two arrays contain the same values at corresponding indices.
      * @public
      *
      * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
@@ -259,6 +259,25 @@ module.exports = ( () => {
      * @param {string} [message]
      */
     static arrayEquals( a, b, message ) {
+      utils.assert( !message || typeof message === 'string', `invalid message: ${ message }` );
+      utils.assert( Array.isArray( a ), `invalid a: ${ a }` );
+      utils.assert( Array.isArray( b ) && b.length === a.length, `invalid b: ${ b }` );
+
+      this.ok( a.every( ( item, index ) => b[ index ] === item ), message || `Expected: ${ b }, result: ${ a }` );
+    }
+
+    /**
+     * A unit test function that tests that two arrays contain the same values, evaluated with '==='.
+     * @public
+     *
+     * NOTE: This uses conventional error handling. For the purposes of this module, this should only be called inside
+     *       of a tester.
+     *
+     * @param {*[]} a - value 1
+     * @param {*[]} b - value 2
+     * @param {string} [message]
+     */
+    static arrayEqualItems( a, b, message ) {
       utils.assert( !message || typeof message === 'string', `invalid message: ${ message }` );
       utils.assert( Array.isArray( a ), `invalid a: ${ a }` );
       utils.assert( Array.isArray( b ), `invalid b: ${ b }` );
